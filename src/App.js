@@ -30,8 +30,10 @@ function App() {
       </main>
 
       <footer>
-      &copy; jartura games
-      logo
+      <span>&copy; jartura games</span>
+      <span>logo
+        <img alt="logo"></img>
+        </span>
       </footer>
     </div>
   );
