@@ -1,9 +1,13 @@
 //import logo from "./logo.svg";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import "./App.css";
 
 function App() {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
   /*
   letter detector
     1. we have a solution designated
@@ -19,9 +23,9 @@ function App() {
   const [inputValue, setInputValue] = useState("");
 
   const solution = "jartura";
-  
+
   // separa la solución en letras
-  const solutionLetters = solution.split("");
+  const correctLetters = solution.split("");
   //console.log(solutionLetters);
 
   let userInput = "i";
@@ -29,15 +33,17 @@ function App() {
   const letterDetector = () => {
     //comprueba si la letra que introduce el usuario está dentro de las letras de la solución
 
-    if (solutionLetters.includes(userInput)) {
+    if (correctLetters.includes(userInput)) {
       console.log("la letra " + userInput + " está en la solución");
     } else {
       console.log("prueba otra vez");
     }
-
   };
-  letterDetector();
 
+  // rayitasGenerator
+  // cuando tenemos una solution, genera las rayitas para cada letra correcta
+
+  //letterDetector();
 
   return (
     <div className="App">
@@ -57,10 +63,14 @@ function App() {
           </div>
         </section>
         <section className="section_form_game">
-          <form>
-            <input placeholder="chosen word"></input>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="userInput"
+              placeholder="chosen word"
+            ></input>
 
-            <button>submit</button>
+            <button onClick={setInputValue}>submit</button>
 
             <input disabled="disabled" placeholder="number of errors"></input>
           </form>
