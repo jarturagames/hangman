@@ -1,9 +1,15 @@
 import React from "react";
+import getApiData from "../services/api";
 
 const GameInteractive = () => {
+  const handleButton = (ev) => {
+    getApiData();
+  };
   return (
     <main>
-      <button className="start__button">START</button>
+      <button onClick={handleButton} className="start__button">
+        START
+      </button>
 
       <section className="section_solution">
         <div>imagen</div>
