@@ -1,4 +1,4 @@
-  // step 3 - mapeo en y generador de <span></span>
+  // step 4 - mapeo en y generador de <span></span>
 
 const Word = ({ correctLetters, solution }) => {
   return (
