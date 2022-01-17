@@ -27,22 +27,28 @@ function App() {
       
 */
 
-  const [inputValue, setInputValue] = useState("");
+  const [lastLetter, setlastLetter] = useState(); // la última letra introducida por el user
+  const [userLetters, setUserLetters] = useState([]); // todas las letras introducidas por el user
 
   // step 1
-  const solution = "hola";
+  const solution = "pepa";
 
   // step 2
   // separa la solución en letras
   const correctLetters = solution.split("");
 
-  let userInput = "u";
+  //let userInput = "u";
 
-  const letterDetector = () => {
+  const handleChange = (ev) => { //cambia el estado de lastLetter a la nueva letra
+    setlastLetter(ev.target.value)
+  }
+
+  const letterDetector = (ev) => {
     //comprueba si la letra que introduce el usuario está dentro de las letras de la solución
 
-    if (correctLetters.includes(userInput)) {
-      console.log("la letra " + userInput + " está en la solución");
+    if (correctLetters.includes(lastLetter)) {
+      setlastLetter(lastLetter)
+      console.log("la letra " + lastLetter + " está en la solución");
     } else {
       console.log("prueba otra vez");
     }
@@ -66,18 +72,24 @@ function App() {
           <div>
             <Word correctLetters={correctLetters} solution={solution} />
 
-            <p>Mensaje para el user</p>
+            <p>Última letra: {lastLetter}</p>
           </div>
         </section>
         <section className="section_form_game">
+
           <form onSubmit={handleSubmit}>
+
             <input
               type="text"
               name="userInput"
               placeholder="chosen word"
-            ></input>
+              onChange={handleChange}
+              value={lastLetter}
+            >
 
-            <button onClick={setInputValue}>submit</button>
+            </input>
+
+            <button onClick={letterDetector}>submit</button>
 
             <input disabled="disabled" placeholder="number of errors"></input>
           </form>
