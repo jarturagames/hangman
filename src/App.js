@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 
 import "./App.css";
+import Word from "./Word";
 
 function App() {
   const handleSubmit = (ev) => {
@@ -29,24 +30,11 @@ function App() {
   const [inputValue, setInputValue] = useState("");
 
   // step 1
-  const solution = "jartura";
+  const solution = "hola";
 
   // step 2
   // separa la solución en letras
   const correctLetters = solution.split("");
-  //console.log(solutionLetters);
-
-  // step 3
-  // rayitasGenerator
-  // cuando tenemos una solution, genera las rayitas para cada letra correcta
-
-  correctLetters.map((letter, i) => {
-    return (
-      <span className="letter" key={i}>
-        {letter}
-      </span>
-    );
-  });
 
   let userInput = "u";
 
@@ -60,8 +48,7 @@ function App() {
     }
   };
 
-  letterDetector();
-  console.log(correctLetters);
+  //letterDetector();
 
   return (
     <div className="App">
@@ -77,15 +64,9 @@ function App() {
           </div>
 
           <div>
-            <p>
-              {correctLetters.map((letter, i) => {
-                return (
-                  <span className="letter " key={i}>
-                    {letter}
-                  </span>
-                );
-              })}
-            </p>
+            <Word correctLetters={correctLetters} solution={solution} />
+
+            <p>Mensaje para el user</p>
           </div>
         </section>
         <section className="section_form_game">

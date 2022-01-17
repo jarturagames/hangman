@@ -4,11 +4,12 @@ h1 {
 
 .letter {
   font-size: 2rem;
-  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   letter-spacing: 0.5rem;
   text-decoration: underline;
 }
 
 .hidden-letter {
-  visibility: hidden;
+  background-color: black;
 }
