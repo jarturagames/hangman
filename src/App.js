@@ -24,6 +24,9 @@ function App() {
       the user adds a letter - does the solution word contain that letter?
       -yes: show that letter on the screen
       -no: paint the next part of the hangman
+
+    6. user interaction: 
+      once the user adds a letter, store this new letter
       
 */
 
@@ -37,24 +40,21 @@ function App() {
   // separa la solución en letras
   const correctLetters = solution.split("");
 
-  //let userInput = "u";
+  const handleChange = (ev) => {
+    setlastLetter(ev.target.value); //cambia el estado de lastLetter a la nueva letra
 
-  const handleChange = (ev) => { //cambia el estado de lastLetter a la nueva letra
-    setlastLetter(ev.target.value)
-  }
+    setUserLetters([...userLetters, ev.target.value]); // guarda todas las letras que el usuario ha usado
+  };
 
   const letterDetector = (ev) => {
     //comprueba si la letra que introduce el usuario está dentro de las letras de la solución
 
     if (correctLetters.includes(lastLetter)) {
-      setlastLetter(lastLetter)
       console.log("la letra " + lastLetter + " está en la solución");
     } else {
       console.log("prueba otra vez");
     }
   };
-
-  //letterDetector();
 
   return (
     <div className="App">
@@ -73,21 +73,19 @@ function App() {
             <Word correctLetters={correctLetters} solution={solution} />
 
             <p>Última letra: {lastLetter}</p>
+            <p>Letras usadas: {userLetters}</p>
           </div>
         </section>
         <section className="section_form_game">
-
           <form onSubmit={handleSubmit}>
-
             <input
               type="text"
+              maxLength={1}
               name="userInput"
-              placeholder="chosen word"
+              placeholder="type a letter"
               onChange={handleChange}
               value={lastLetter}
-            >
-
-            </input>
+            ></input>
 
             <button onClick={letterDetector}>submit</button>
 
