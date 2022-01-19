@@ -45,7 +45,6 @@ function App() {
   const maxNumberOfErrors = solution.length;
   let triesLeft = maxNumberOfErrors - userLetters.length;
 
-  console.log(userLetters.length);
   // step 3
   // separa la solución en letras
   const correctLetters = solution.split("");
@@ -54,14 +53,14 @@ function App() {
   const handleErrors = (ev) => {
     //comprueba si la letra que introduce el usuario está dentro de las letras de la solución
 
-    if (correctLetters.includes(lastLetter)) {
-      console.log("la letra " + lastLetter + " está en la solución");
-    } else {
+    if (!correctLetters.includes(lastLetter)) {
+      console.log("la letra " + lastLetter + " no está en la solución");
       setWrongLetters([...wrongLetters, ev.target.value]);
       setNumberOfErrors(numberOfErrors + 1);
       console.log("prueba otra vez");
-    }
+    } 
   };
+
   //step 7
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
   const handleChange = (ev) => {
@@ -79,6 +78,12 @@ function App() {
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
       console.log("bravo, caracter válido");
+    }
+    else if (!correctLetters.includes(lastLetter)) {
+      console.log("la letra " + lastLetter + " no está en la solución");
+      setWrongLetters([...wrongLetters, ev.target.value]);
+      setNumberOfErrors(numberOfErrors + 1);
+      console.log("prueba otra vez")
     }
      else if (inputValue !== reg){ // si es un caracter inválido
       console.log("caracter no válido");      
