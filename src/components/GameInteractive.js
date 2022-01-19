@@ -9,6 +9,7 @@ const GameInteractive = ({
   handleChange,
   lastLetter,
   userLetters,
+  numberOfErrors,
   handleNewLetter,
 }) => {
   const handleButton = (ev) => {
@@ -31,6 +32,7 @@ const GameInteractive = ({
           <Word correctLetters={correctLetters} solution={solution} />
           <p>Última letra: {lastLetter}</p>
           <p>Letras usadas: {userLetters}</p>{" "}
+          <p>Te quedan X intentos</p>
         </div>
       </section>
       <section className="section_form_game">
@@ -46,7 +48,7 @@ const GameInteractive = ({
 
           <button onClick={handleNewLetter}>submit</button>
 
-          <input disabled="disabled" placeholder="number of errors"></input>
+          <input value={numberOfErrors} disabled="disabled" placeholder="number of errors"></input>
         </form>
       </section>
     </main>

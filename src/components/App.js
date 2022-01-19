@@ -30,17 +30,17 @@ function App() {
     6. user interaction:
       the user adds a letter - does the solution word contain that letter?
       -yes: show that letter on the screen
-      -no: paint the next part of the hangman
+      -no: paint the next part of the hangman // if new userLetter is not in solution = +1 error
 
     7. user interaction: 
       once the user adds a letter, store this new letter
 */
 
   // step 1
-  const solution = "pepa";
+  const solution = "jartura";
 
   //step 2
-  const maxNumberOfErrors = 7;
+  const maxNumberOfErrors = solution.length;
 
   // step 3
   // separa la solución en letras
@@ -73,6 +73,8 @@ function App() {
       <GameInteractive
         userLetters={userLetters}
         lastLetter={lastLetter}
+        numberOfErrors={numberOfErrors}
+        
         handleChange={handleChange}
         handleNewLetter={handleNewLetter}
         correctLetters={correctLetters}
@@ -84,26 +86,4 @@ function App() {
 }
 
 export default App;
-/*
-    <header>
-        <h1>jartura games</h1>
-      </header>
 
-      <main>
-
-        <section className="section_solution">
-          <div>
-            <img>imagen</img>
-          </div>
-          <div></div>
-        </section>
-
-        <section className="section_form_game">
-          <form>
-            <input>letra elegida</input>
-            <button></button>
-          </form>
-        </section>
-
-      </main>
-*/
