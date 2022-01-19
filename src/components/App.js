@@ -58,7 +58,7 @@ function App() {
       setWrongLetters([...wrongLetters, ev.target.value]);
       setNumberOfErrors(numberOfErrors + 1);
       console.log("prueba otra vez");
-    } 
+    }
   };
 
   //step 7
@@ -68,27 +68,23 @@ function App() {
 
     let inputValue = ev.target.value.toLowerCase();
 
-    if (!inputValue) { //si hay espacio en blanco, añade una letra
+    if (!inputValue) {
+      //si hay espacio en blanco, añade una letra
       console.log("añade una letra");
-    }
+    } 
     else if (userLetters.includes(inputValue)) {
-    console.log("ya has usado esa letra");
-    }
-    else if (inputValue.match(reg)) { //si es un caracter válido, actualiza estados
+      console.log("ya has usado esa letra");
+    } 
+    else if (inputValue.match(reg)) {
+      //si es un caracter válido, actualiza estados
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
       console.log("bravo, caracter válido");
+    } 
+    else if (inputValue !== reg) {
+      // si es un caracter inválido
+      console.log("caracter no válido");
     }
-    else if (!correctLetters.includes(lastLetter)) {
-      console.log("la letra " + lastLetter + " no está en la solución");
-      setWrongLetters([...wrongLetters, ev.target.value]);
-      setNumberOfErrors(numberOfErrors + 1);
-      console.log("prueba otra vez")
-    }
-     else if (inputValue !== reg){ // si es un caracter inválido
-      console.log("caracter no válido");      
-    }
-    
   };
 
   return (

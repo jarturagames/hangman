@@ -15,9 +15,7 @@ const GameInteractive = ({
   const handleButton = (ev) => {
     getApiData();
   };
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-  };
+  
 
   return (
     <main>
@@ -36,7 +34,7 @@ const GameInteractive = ({
         </div>
       </section>
       <section className="section_form_game">
-        <form onSubmit={handleSubmit}>
+        <form >
           <input
             type="text"
             maxLength={1}
