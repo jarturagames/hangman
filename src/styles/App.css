@@ -1,3 +1,15 @@
 h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.letter {
+  font-size: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  letter-spacing: 0.5rem;
+  text-decoration: underline;
+}
+
+.hidden-letter {
+  background-color: black;
+}
