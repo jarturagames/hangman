@@ -43,11 +43,8 @@ const GameInteractive = ({
             name="userInput"
             placeholder="type a letter"
             onChange={handleChange}
-            value={lastLetter}
+           
           ></input>
-
-          <button onClick={handleNewLetter}>submit</button>
-
           <input value={numberOfErrors} disabled="disabled" placeholder="number of errors"></input>
         </form>
       </section>

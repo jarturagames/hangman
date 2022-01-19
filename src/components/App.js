@@ -28,12 +28,14 @@ function App() {
     5. according to the number of letters, split the hangman parts into the whole solution
 
     6. user interaction:
-      the user adds a letter - does the solution word contain that letter?
+      the user adds a letter 
+      - listen to the event
+      - store the new letter as "lastLetter" + store the new letter in "userLetters"
+      
+    7. does the solution word contain that new user letter?
       -yes: show that letter on the screen
-      -no: paint the next part of the hangman // if new userLetter is not in solution = +1 error
+      -no: store it inside "wrongLetters" + show the counter of errors on the screen +1 error
 
-    7. user interaction: 
-      once the user adds a letter, store this new letter
 */
 
   // step 1
@@ -59,11 +61,26 @@ function App() {
     }
   };
   //step 7
-
+  //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
   const handleChange = (ev) => {
+    const reg = /^[a-z]+$/i; //caracteres que pueden introducirse (alfabeto inglés, solo letras, mayus y minus)
+
+    if (!ev.target.value) {
+      console.log("añade una letra");
+    } 
+    else if (ev.target.value.match(reg)) {
+      setlastLetter(ev.target.value);
+      setUserLetters([...userLetters, ev.target.value]);
+      console.log("bravo, caracter válido");
+    } 
+    else if (ev.target.value !== reg){
+      console.log("caracter no válido");      
+    }
+    /*
     setlastLetter(ev.target.value); //cambia el estado de lastLetter a la nueva letra
 
     setUserLetters([...userLetters, ev.target.value]); // guarda todas las letras que el usuario ha usado
+    */
   };
 
   return (
@@ -74,7 +91,6 @@ function App() {
         userLetters={userLetters}
         lastLetter={lastLetter}
         numberOfErrors={numberOfErrors}
-        
         handleChange={handleChange}
         handleNewLetter={handleNewLetter}
         correctLetters={correctLetters}
@@ -86,4 +102,3 @@ function App() {
 }
 
 export default App;
-
