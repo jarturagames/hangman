@@ -10,7 +10,7 @@ const GameInteractive = ({
   lastLetter,
   userLetters,
   numberOfErrors,
-  handleNewLetter,
+  triesLeft
 }) => {
   const handleButton = (ev) => {
     getApiData();
@@ -32,7 +32,7 @@ const GameInteractive = ({
           <Word correctLetters={correctLetters} solution={solution} />
           <p>Última letra: {lastLetter}</p>
           <p>Letras usadas: {userLetters}</p>{" "}
-          <p>Te quedan X intentos</p>
+          <p>Te quedan {triesLeft} intentos</p>
         </div>
       </section>
       <section className="section_form_game">

@@ -43,13 +43,15 @@ function App() {
 
   //step 2
   const maxNumberOfErrors = solution.length;
+  let triesLeft = maxNumberOfErrors - userLetters.length;
 
+  console.log(userLetters.length);
   // step 3
   // separa la solución en letras
   const correctLetters = solution.split("");
 
   //step 6
-  const handleNewLetter = (ev) => {
+  const handleErrors = (ev) => {
     //comprueba si la letra que introduce el usuario está dentro de las letras de la solución
 
     if (correctLetters.includes(lastLetter)) {
@@ -65,22 +67,23 @@ function App() {
   const handleChange = (ev) => {
     const reg = /^[a-z]+$/i; //caracteres que pueden introducirse (alfabeto inglés, solo letras, mayus y minus)
 
-    if (!ev.target.value) {
+    let inputValue = ev.target.value.toLowerCase();
+
+    if (!inputValue) { //si hay espacio en blanco, añade una letra
       console.log("añade una letra");
-    } 
-    else if (ev.target.value.match(reg)) {
-      setlastLetter(ev.target.value);
-      setUserLetters([...userLetters, ev.target.value]);
+    }
+    else if (userLetters.includes(inputValue)) {
+    console.log("ya has usado esa letra");
+    }
+    else if (inputValue.match(reg)) { //si es un caracter válido, actualiza estados
+      setlastLetter(inputValue);
+      setUserLetters([...userLetters, inputValue]);
       console.log("bravo, caracter válido");
-    } 
-    else if (ev.target.value !== reg){
+    }
+     else if (inputValue !== reg){ // si es un caracter inválido
       console.log("caracter no válido");      
     }
-    /*
-    setlastLetter(ev.target.value); //cambia el estado de lastLetter a la nueva letra
-
-    setUserLetters([...userLetters, ev.target.value]); // guarda todas las letras que el usuario ha usado
-    */
+    
   };
 
   return (
@@ -92,9 +95,9 @@ function App() {
         lastLetter={lastLetter}
         numberOfErrors={numberOfErrors}
         handleChange={handleChange}
-        handleNewLetter={handleNewLetter}
         correctLetters={correctLetters}
         solution={solution}
+        triesLeft={triesLeft}
       />
       <Footer />
     </>
