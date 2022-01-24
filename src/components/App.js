@@ -8,7 +8,7 @@ import GameIllustration from "./GameIllustration";
 import GameInteractive from "./GameInteractive";
 
 function App() {
-  const [lastLetter, setlastLetter] = useState(); // la última letra introducida por el user
+  const [lastLetter, setlastLetter] = useState(""); // la última letra introducida por el user
   const [userLetters, setUserLetters] = useState([]); // todas las letras introducidas por el user
 
   const [wrongLetters, setWrongLetters] = useState([]);
@@ -56,7 +56,7 @@ function App() {
     if (!correctLetters.includes(lastLetter)) {
       console.log("la letra " + lastLetter + " no está en la solución");
       setWrongLetters([...wrongLetters, ev.target.value]);
-      setNumberOfErrors(numberOfErrors + 1);
+      setNumberOfErrors(...(numberOfErrors + 1));
       console.log("prueba otra vez");
     }
   };
@@ -73,19 +73,42 @@ function App() {
       console.log("añade una letra");
     } 
     else if (userLetters.includes(inputValue)) {
-      console.log("ya has usado esa letra");
+     //letra ya usada
+    console.log("ya has usado esa letra");
     } 
-    else if (inputValue.match(reg)) {
-      //si es un caracter válido, actualiza estados
+    else if (
+    !userLetters.includes(inputValue) &&
+    inputValue.match(reg) &&
+    correctLetters.includes(inputValue)
+    ) {
+      // letra correcta
+      console.log("la letra " + inputValue + "  está en la solución");
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
-      console.log("bravo, caracter válido");
+      console.log("bravo, caracter válido y letra correcta");
+    } 
+    else if (
+    !userLetters.includes(inputValue) &&
+    inputValue.match(reg) &&
+    !correctLetters.includes(inputValue)
+    ) {
+      // letra incorrecta
+      //si es un caracter válido, actualiza estados
+      setWrongLetters([...wrongLetters, ev.target.value]);
+      setNumberOfErrors(numberOfErrors + 1);
+
+      setlastLetter(inputValue);
+      setUserLetters([...userLetters, inputValue]);
+      console.log("la letra " + inputValue + "  NO está en la solución");
     } 
     else if (inputValue !== reg) {
+      //caracter no válido
       // si es un caracter inválido
       console.log("caracter no válido");
     }
   };
+  console.log("letras falladas " + wrongLetters);
+  console.log("letras user " + userLetters);
 
   return (
     <>
