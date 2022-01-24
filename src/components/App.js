@@ -50,18 +50,6 @@ function App() {
   const correctLetters = solution.split("");
 
   //step 6
-  const handleErrors = (ev) => {
-    //comprueba si la letra que introduce el usuario está dentro de las letras de la solución
-
-    if (!correctLetters.includes(lastLetter)) {
-      console.log("la letra " + lastLetter + " no está en la solución");
-      setWrongLetters([...wrongLetters, ev.target.value]);
-      setNumberOfErrors(...(numberOfErrors + 1));
-      console.log("prueba otra vez");
-    }
-  };
-
-  //step 7
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
   const handleChange = (ev) => {
     const reg = /^[a-z]+$/i; //caracteres que pueden introducirse (alfabeto inglés, solo letras, mayus y minus)
@@ -70,22 +58,21 @@ function App() {
 
     if (!inputValue) {
       //si hay espacio en blanco, añade una letra
-      console.log("añade una letra");
+      window.alert("añade una letra")
     } 
     else if (userLetters.includes(inputValue)) {
      //letra ya usada
-    console.log("ya has usado esa letra");
+     window.alert("ya has usado esa letra")
     } 
     else if (
+      // letra correcta
     !userLetters.includes(inputValue) &&
     inputValue.match(reg) &&
     correctLetters.includes(inputValue)
     ) {
-      // letra correcta
-      console.log("la letra " + inputValue + "  está en la solución");
+      window.alert("la letra " + inputValue + "  está en la solución");
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
-      console.log("bravo, caracter válido y letra correcta");
     } 
     else if (
     !userLetters.includes(inputValue) &&
@@ -99,12 +86,12 @@ function App() {
 
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
-      console.log("la letra " + inputValue + "  NO está en la solución");
+      window.alert("la letra " + inputValue + "  NO está en la solución");
     } 
     else if (inputValue !== reg) {
       //caracter no válido
       // si es un caracter inválido
-      console.log("caracter no válido");
+      window.alert("caracter no válido");
     }
   };
   console.log("letras falladas " + wrongLetters);

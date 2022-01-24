@@ -10,12 +10,11 @@ const GameInteractive = ({
   lastLetter,
   userLetters,
   numberOfErrors,
-  triesLeft
+  triesLeft,
 }) => {
   const handleButton = (ev) => {
     getApiData();
   };
-  
 
   return (
     <main>
@@ -34,16 +33,19 @@ const GameInteractive = ({
         </div>
       </section>
       <section className="section_form_game">
-        <form >
+        <form>
           <input
             type="text"
             maxLength={1}
             name="userInput"
             placeholder="type a letter"
             onChange={handleChange}
-           
           ></input>
-          <input value={numberOfErrors} disabled="disabled" placeholder="number of errors"></input>
+          <input
+            value={numberOfErrors}
+            disabled="disabled"
+            placeholder={numberOfErrors}
+          ></input>
         </form>
       </section>
     </main>
