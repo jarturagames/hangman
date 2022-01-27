@@ -52,7 +52,7 @@ function App() {
 
   const correctLetters = solution.split("");
 
-  let letrasNoRepetidas = []; //letras no repetidas, número máximo de aciertos
+  let noRepetedLetters = []; //letras no repetidas, número máximo de aciertos
 
 //detecta si hay letras repetidas en la solución  
 //console.log(filteredSolutionLetters);
@@ -60,18 +60,18 @@ function App() {
    
     for (let i = 0; i < correctLetters.length; i++) {
       
-      //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array letrasNoRepetidas
+      //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array noRepetedLetters
       //usar includes
-      if (!letrasNoRepetidas.includes(correctLetters[i])) {
-        letrasNoRepetidas.push(correctLetters[i])
+      if (!noRepetedLetters.includes(correctLetters[i])) {
+        noRepetedLetters.push(correctLetters[i])
       } 
       
     }
-    return letrasNoRepetidas;
+    return noRepetedLetters;
   };
 
   correctLettersFiltered();
-  console.log(letrasNoRepetidas);
+  console.log(noRepetedLetters);
   
 
 
