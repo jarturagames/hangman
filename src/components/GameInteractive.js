@@ -5,7 +5,6 @@ import getApiData from "../services/api";
 
 const GameInteractive = ({
   correctLetters,
-  solution,
   handleChange,
   lastLetter,
   userLetters,
@@ -26,7 +25,7 @@ const GameInteractive = ({
         <div>imagen</div>
 
         <div>
-          <Word correctLetters={correctLetters} solution={solution} />
+          <Word correctLetters={correctLetters} userLetters={userLetters}/>
           <p>Última letra: {lastLetter}</p>
           <p>Letras usadas: {userLetters}</p>{" "}
           <p>Te quedan {triesLeft} intentos</p>

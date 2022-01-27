@@ -7,7 +7,7 @@ h1 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   letter-spacing: 0.5rem;
-  text-decoration: underline;
+  /*text-decoration: underline;*/
 }
 
 .hidden-letter {

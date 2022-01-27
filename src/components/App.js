@@ -48,33 +48,26 @@ function App() {
   // step 3
   // detecta si hay letras repetidas
 
-    // separa la solución en cadenas de letras
+  // separa la solución en cadenas de letras
 
   const correctLetters = solution.split("");
 
   let noRepetedLetters = []; //letras no repetidas, número máximo de aciertos
 
-//detecta si hay letras repetidas en la solución  
-//console.log(filteredSolutionLetters);
+  //detecta si hay letras repetidas en la solución
+  //console.log(filteredSolutionLetters);
   const correctLettersFiltered = () => {
-   
     for (let i = 0; i < correctLetters.length; i++) {
-      
       //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array noRepetedLetters
-      //usar includes
       if (!noRepetedLetters.includes(correctLetters[i])) {
-        noRepetedLetters.push(correctLetters[i])
-      } 
-      
+        noRepetedLetters.push(correctLetters[i]);
+      }
     }
     return noRepetedLetters;
   };
 
   correctLettersFiltered();
   console.log(noRepetedLetters);
-  
-
-
 
   //step 6
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
@@ -86,30 +79,26 @@ function App() {
     if (!inputValue) {
       //si hay espacio en blanco, añade una letra
       //window.alert("añade una letra")
-    } 
-    
-    else if (userLetters.includes(inputValue)) {
-     //letra ya usada
-     window.alert("ya has usado esa letra")
-    } 
-    else if (
+    } else if (userLetters.includes(inputValue)) {
+      //letra ya usada
+      window.alert("ya has usado esa letra");
+    } else if (
       // letra correcta
-    !userLetters.includes(inputValue) &&
-    inputValue.match(reg) &&
-    correctLetters.includes(inputValue)
+      !userLetters.includes(inputValue) &&
+      inputValue.match(reg) &&
+      correctLetters.includes(inputValue)
     ) {
       window.alert("la letra " + inputValue + "  está en la solución");
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
-      if (userLetters.includes(correctLetters)) { 
-        window.alert("has ganado")
-  
+
+      if (userLetters.includes(correctLetters)) {
+        window.alert("has ganado");
       }
-    } 
-    else if (
-    !userLetters.includes(inputValue) &&
-    inputValue.match(reg) &&
-    !correctLetters.includes(inputValue)
+    } else if (
+      !userLetters.includes(inputValue) &&
+      inputValue.match(reg) &&
+      !correctLetters.includes(inputValue)
     ) {
       // letra incorrecta
       //si es un caracter válido, actualiza estados
@@ -119,20 +108,17 @@ function App() {
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
       window.alert("la letra " + inputValue + "  NO está en la solución");
-      
-      if (wrongLetters.length == maxNumberOfErrors) { 
-        window.alert("has perdido")
-  
+
+      if (wrongLetters.length == maxNumberOfErrors) {
+        window.alert("has perdido");
       }
-    } 
-    else if (inputValue !== reg) {
+    } else if (inputValue !== reg) {
       //caracter no válido
       // si es un caracter inválido
       window.alert("caracter no válido");
     }
-    
   };
-  console.log("letras falladas " + wrongLetters + " "+ wrongLetters.length);
+  console.log("letras falladas " + wrongLetters + " " + wrongLetters.length);
   console.log("letras user " + userLetters);
 
   return (

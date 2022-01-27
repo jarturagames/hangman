@@ -1,10 +1,38 @@
-  // step 4 - mapeo en y generador de <span></span>
-  import React from "react";
+// step 4 - mapeo en y generador de <span></span>
+import React from "react";
 
-const Word = ({ correctLetters, solution }) => {
+const Word = ({ correctLetters, userLetters }) => {
   return (
     <>
       <p>
+        {
+          /* si el array userLetters contiene correctLetters, pinta una raya */
+          correctLetters.map((letter, i) => {
+            if (userLetters.includes(letter)) {
+              return (
+                <span className="letter" key={i}>
+                  {letter}
+                </span>
+              );
+            } 
+            else {
+              return (
+                <span className="letter" key={i}>
+                  _
+                </span>
+              );
+            }
+          })
+        }
+      </p>
+    </>
+  );
+};
+
+export default Word;
+
+/*
+<p>
         {correctLetters.map((letter, i) => {
           return (
             <span className="letter" key={i}>
@@ -13,8 +41,4 @@ const Word = ({ correctLetters, solution }) => {
           );
         })}
       </p>
-    </>
-  );
-};
-
-export default Word;
+*/
