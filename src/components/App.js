@@ -46,8 +46,35 @@ function App() {
   let triesLeft = maxNumberOfErrors - userLetters.length;
 
   // step 3
-  // separa la solución en letras
+  // detecta si hay letras repetidas
+
+    // separa la solución en cadenas de letras
+
   const correctLetters = solution.split("");
+
+  let letrasNoRepetidas = []; //letras no repetidas, número máximo de aciertos
+
+//detecta si hay letras repetidas en la solución  
+//console.log(filteredSolutionLetters);
+  const correctLettersFiltered = () => {
+   
+    for (let i = 0; i < correctLetters.length; i++) {
+      
+      //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array letrasNoRepetidas
+      //usar includes
+      if (!letrasNoRepetidas.includes(correctLetters[i])) {
+        letrasNoRepetidas.push(correctLetters[i])
+      } 
+      
+    }
+    return letrasNoRepetidas;
+  };
+
+  correctLettersFiltered();
+  console.log(letrasNoRepetidas);
+  
+
+
 
   //step 6
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
@@ -58,8 +85,9 @@ function App() {
 
     if (!inputValue) {
       //si hay espacio en blanco, añade una letra
-      window.alert("añade una letra")
+      //window.alert("añade una letra")
     } 
+    
     else if (userLetters.includes(inputValue)) {
      //letra ya usada
      window.alert("ya has usado esa letra")
@@ -73,6 +101,10 @@ function App() {
       window.alert("la letra " + inputValue + "  está en la solución");
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
+      if (userLetters.includes(correctLetters)) { 
+        window.alert("has ganado")
+  
+      }
     } 
     else if (
     !userLetters.includes(inputValue) &&
@@ -87,14 +119,20 @@ function App() {
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
       window.alert("la letra " + inputValue + "  NO está en la solución");
+      
+      if (wrongLetters.length == maxNumberOfErrors) { 
+        window.alert("has perdido")
+  
+      }
     } 
     else if (inputValue !== reg) {
       //caracter no válido
       // si es un caracter inválido
       window.alert("caracter no válido");
     }
+    
   };
-  console.log("letras falladas " + wrongLetters);
+  console.log("letras falladas " + wrongLetters + " "+ wrongLetters.length);
   console.log("letras user " + userLetters);
 
   return (

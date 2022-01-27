@@ -35,6 +35,7 @@ const GameInteractive = ({
       <section className="section_form_game">
         <form>
           <input
+            autoComplete="off"
             type="text"
             maxLength={1}
             name="userInput"
