@@ -41,41 +41,28 @@ function App() {
   // step 1
   const solution = "jartura";
 
+ // step 2 calcular max numero de errores y aciertos para enviarlos al dibujo
+ // (noRepetedLetters.length - numberOfErrors);
+
+
   // step 3
   // detecta si hay letras repetidas
-
   // separa la solución en cadenas de letras
 
   const correctLetters = solution.split("");
-
   let noRepetedLetters = []; //letras no repetidas, número máximo de aciertos
 
-  //detecta si hay letras repetidas en la solución
-  //console.log(filteredSolutionLetters);
   const correctLettersFiltered = () => {
     for (let i = 0; i < correctLetters.length; i++) {
       //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array noRepetedLetters
       if (!noRepetedLetters.includes(correctLetters[i])) {
         noRepetedLetters.push(correctLetters[i]);
-      
       }
     }
-   
     return noRepetedLetters;
   };
 
-  //step 2
-  //let maxNumberOfErrors = noRepetedLetters.length;
- //let triesLeft = noRepetedLetters.length - userLetters.length;
-/*
-  const triesLeft = (noRepetedLetters, userLetters) => {
-    let triesLeft = noRepetedLetters.length - userLetters.length;
-
-    return triesLeft;
-  }*/
-
   correctLettersFiltered();
-  console.log(noRepetedLetters.length - numberOfErrors);
 
   //step 6
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
@@ -126,8 +113,6 @@ function App() {
       window.alert("caracter no válido");
     }
   };
-  console.log("letras falladas " + wrongLetters + " " + wrongLetters.length);
-  console.log("letras user " + userLetters);
 
   return (
     <>
