@@ -6,7 +6,7 @@ const Word = ({ correctLetters, userLetters }) => {
     <>
       <p>
         {
-          /* si el array userLetters contiene correctLetters, pinta una raya */
+          /* si el array userLetters contiene la letra que se está pintando con el map, pinta una raya */
           correctLetters.map((letter, i) => {
             if (userLetters.includes(letter)) {
               return (

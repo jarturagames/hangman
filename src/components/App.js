@@ -41,10 +41,6 @@ function App() {
   // step 1
   const solution = "jartura";
 
-  //step 2
-  const maxNumberOfErrors = solution.length;
-  let triesLeft = maxNumberOfErrors - userLetters.length;
-
   // step 3
   // detecta si hay letras repetidas
 
@@ -61,13 +57,25 @@ function App() {
       //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array noRepetedLetters
       if (!noRepetedLetters.includes(correctLetters[i])) {
         noRepetedLetters.push(correctLetters[i]);
+      
       }
     }
+   
     return noRepetedLetters;
   };
 
+  //step 2
+  //let maxNumberOfErrors = noRepetedLetters.length;
+ //let triesLeft = noRepetedLetters.length - userLetters.length;
+/*
+  const triesLeft = (noRepetedLetters, userLetters) => {
+    let triesLeft = noRepetedLetters.length - userLetters.length;
+
+    return triesLeft;
+  }*/
+
   correctLettersFiltered();
-  console.log(noRepetedLetters);
+  console.log(noRepetedLetters.length - numberOfErrors);
 
   //step 6
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
@@ -109,7 +117,7 @@ function App() {
       setUserLetters([...userLetters, inputValue]);
       window.alert("la letra " + inputValue + "  NO está en la solución");
 
-      if (wrongLetters.length == maxNumberOfErrors) {
+      if (wrongLetters.length == noRepetedLetters.length) {
         window.alert("has perdido");
       }
     } else if (inputValue !== reg) {
@@ -132,7 +140,6 @@ function App() {
         handleChange={handleChange}
         correctLetters={correctLetters}
         solution={solution}
-        triesLeft={triesLeft}
       />
       <Footer />
     </>

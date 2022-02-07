@@ -2,6 +2,7 @@ import React from "react";
 import Word from "./Word";
 
 import getApiData from "../services/api";
+import { UserLetters } from "./UserLetters";
 
 const GameInteractive = ({
   correctLetters,
@@ -9,7 +10,6 @@ const GameInteractive = ({
   lastLetter,
   userLetters,
   numberOfErrors,
-  triesLeft,
 }) => {
   const handleButton = (ev) => {
     getApiData();
@@ -27,8 +27,8 @@ const GameInteractive = ({
         <div>
           <Word correctLetters={correctLetters} userLetters={userLetters}/>
           <p>Última letra: {lastLetter}</p>
-          <p>Letras usadas: {userLetters}</p>{" "}
-          <p>Te quedan {triesLeft} intentos</p>
+          <UserLetters userLetters={userLetters}/>
+          
         </div>
       </section>
       <section className="section_form_game">
