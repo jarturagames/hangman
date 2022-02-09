@@ -16,27 +16,24 @@ function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
 
   /*
- 
-    1. we have a solution designated - string
+    1. press start button
+      - game picks a random word, the solution
 
-    2. we have a max number of errors - number (whole hangman)
+    2. for each letter, generate a _ for the user to see
 
-    3. what are the letters in that solution?
-     - split the word into letters
+    2. we have a max number of errors - number (whole hangman, svg)
 
-    4. for each letter, generate a _ for the user to see
-
-    5. according to the number of letters, split the hangman parts into the whole solution
-
-    6. user interaction:
-      the user adds a letter 
+    5. the user adds a letter 
       - listen to the event
       - store the new letter as "lastLetter" + store the new letter in "userLetters"
       
-    7. does the solution word contain that new user letter?
-      -yes: show that letter on the screen
-      -no: store it inside "wrongLetters" + show the counter of errors on the screen +1 error
-
+    5. does the solution word contain that new user letter?
+      -yes: show that letter on the screen, store in lastletter and userletters
+          are all the letters solved? 
+            - y: the user has won
+      -no: store it inside "wrongLetters" + increase the counter of errors + paint the hangman
+          are the  wrongletters > than 4 (according to svg length)?
+            -n : the user has lost
 */
 
   // step 1
@@ -67,11 +64,6 @@ function App() {
     "wolf",
   ];
 
-  //array de letras separadas
-  let correctLetters = [];
-
-  let noRepetedLetters = []; //letras no repetidas, número máximo de aciertos
-
   /*
   crear funcion que seleccione de manera aleatoria uno de los
   string de los animales y lo asigne la variable solucion
@@ -97,34 +89,10 @@ function App() {
     setWord(randomWordLetters);
   };
 
- 
-
   const handleStartBtn = () => {
     getRandomNumber();
   };
 
-  //const solution = "jartura";
-
-  // step 2 calcular max numero de errores y aciertos para enviarlos al dibujo
-  // (noRepetedLetters.length - numberOfErrors);
-
-  // step 3
-  // detecta si hay letras repetidas
-  // separa la solución en cadenas de letras
-
-  const correctLettersFiltered = () => {
-    for (let i = 0; i < word.length; i++) {
-      //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array noRepetedLetters
-      if (!noRepetedLetters.includes(word[i])) {
-        noRepetedLetters.push(word[i]);
-      }
-    }
-    return noRepetedLetters;
-  };
-
-  correctLettersFiltered();
-
-  //step 6
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
   const handleChange = (ev) => {
     const reg = /^[a-z]+$/i; //caracteres que pueden introducirse (alfabeto inglés, solo letras, mayus y minus)
@@ -141,19 +109,19 @@ function App() {
       // letra correcta
       !userLetters.includes(inputValue) &&
       inputValue.match(reg) &&
-      correctLetters.includes(inputValue)
+      word.includes(inputValue)
     ) {
       window.alert("la letra " + inputValue + "  está en la solución");
       setlastLetter(inputValue);
       setUserLetters([...userLetters, inputValue]);
 
-      if (userLetters.includes(correctLetters)) {
+      if (userLetters.includes(word)) {
         window.alert("has ganado");
       }
     } else if (
       !userLetters.includes(inputValue) &&
       inputValue.match(reg) &&
-      !correctLetters.includes(inputValue)
+      !word.includes(inputValue)
     ) {
       // letra incorrecta
       //si es un caracter válido, actualiza estados
@@ -164,7 +132,7 @@ function App() {
       setUserLetters([...userLetters, inputValue]);
       window.alert("la letra " + inputValue + "  NO está en la solución");
 
-      if (wrongLetters.length >= noRepetedLetters.length) {
+      if (wrongLetters.length >= 4) {
         window.alert("has perdido");
         setlastLetter("");
         setUserLetters([]);
@@ -188,7 +156,6 @@ function App() {
         lastLetter={lastLetter}
         numberOfErrors={numberOfErrors}
         handleChange={handleChange}
-        correctLetters={correctLetters}
         word={word}
       />
       <Footer />

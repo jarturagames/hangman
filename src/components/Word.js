@@ -1,7 +1,7 @@
 // step 4 - mapeo en y generador de <span></span>
 import React from "react";
 
-const Word = ({ correctLetters, userLetters, word }) => {
+const Word = ({ userLetters, word }) => {
   return (
     <>
       <p>
@@ -30,15 +30,3 @@ const Word = ({ correctLetters, userLetters, word }) => {
 };
 
 export default Word;
-
-/*
-<p>
-        {correctLetters.map((letter, i) => {
-          return (
-            <span className="letter" key={i}>
-              {letter}
-            </span>
-          );
-        })}
-      </p>
-*/
