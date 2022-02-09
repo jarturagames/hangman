@@ -15,6 +15,10 @@ function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
 
   /*
+  setlastLetter
+  setUserLetters
+  setWrongLetters
+  setNumberOfErrors
   letter detector
     1. we have a solution designated - string
 
@@ -104,8 +108,14 @@ function App() {
       setUserLetters([...userLetters, inputValue]);
       window.alert("la letra " + inputValue + "  NO está en la solución");
 
-      if (wrongLetters.length == noRepetedLetters.length) {
+      if (wrongLetters.length >= noRepetedLetters.length) {
         window.alert("has perdido");
+        setlastLetter("")
+        setUserLetters([])
+        setWrongLetters([])
+        setNumberOfErrors(0)
+        
+
       }
     } else if (inputValue !== reg) {
       //caracter no válido
