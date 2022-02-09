@@ -74,18 +74,24 @@ function App() {
   string de los animales y lo asigne la variable solucion
   */
 
-  const handleWord = () => {
+  const getRandomNumber = () => {
     const maxNumber = animalsArray.length;
     const minNumber = 1;
 
-    //generate randomNumber
     let randomNumber = Math.floor(
       Math.random() * (maxNumber - minNumber) + minNumber + 1
     );
 
-    //pick randomNumber and link it to the index of animalsArray
+    //link random number to array and word
+    
     word = animalsArray[randomNumber];
-    console.log(randomNumber, word);
+    
+    return console.log(word);
+  }
+
+  const handleStartBtn = () => {
+
+    getRandomNumber();
   };
 
   const solution = "jartura";
@@ -171,7 +177,7 @@ function App() {
       <Header />
       <GameIllustration numberOfErrors={numberOfErrors} />
       <GameInteractive
-        handleWord={handleWord}
+        handleStartBtn={handleStartBtn}
         userLetters={userLetters}
         lastLetter={lastLetter}
         numberOfErrors={numberOfErrors}
