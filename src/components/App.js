@@ -15,11 +15,7 @@ function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
 
   /*
-  setlastLetter
-  setUserLetters
-  setWrongLetters
-  setNumberOfErrors
-  letter detector
+ 
     1. we have a solution designated - string
 
     2. we have a max number of errors - number (whole hangman)
@@ -43,11 +39,34 @@ function App() {
 */
 
   // step 1
+  const animalsArray = [
+    "dog",
+    "cat",
+    "tiger",
+    "leopard",
+    "lion",
+    "penguin",
+    "puffin",
+    "bear",
+    "cow",
+    "eagle",
+    "crocodile",
+    "alligator",
+    "ferret",
+    "panda",
+    "fox",
+    "pig",
+    "sheep",
+    "donkey",
+    "goat",
+    "bat",
+    "human",
+    "rat",
+  ];
   const solution = "jartura";
 
- // step 2 calcular max numero de errores y aciertos para enviarlos al dibujo
- // (noRepetedLetters.length - numberOfErrors);
-
+  // step 2 calcular max numero de errores y aciertos para enviarlos al dibujo
+  // (noRepetedLetters.length - numberOfErrors);
 
   // step 3
   // detecta si hay letras repetidas
@@ -110,12 +129,10 @@ function App() {
 
       if (wrongLetters.length >= noRepetedLetters.length) {
         window.alert("has perdido");
-        setlastLetter("")
-        setUserLetters([])
-        setWrongLetters([])
-        setNumberOfErrors(0)
-        
-
+        setlastLetter("");
+        setUserLetters([]);
+        setWrongLetters([]);
+        setNumberOfErrors(0);
       }
     } else if (inputValue !== reg) {
       //caracter no válido
@@ -127,7 +144,7 @@ function App() {
   return (
     <>
       <Header />
-      <GameIllustration numberOfErrors={numberOfErrors}/>
+      <GameIllustration numberOfErrors={numberOfErrors} />
       <GameInteractive
         userLetters={userLetters}
         lastLetter={lastLetter}
