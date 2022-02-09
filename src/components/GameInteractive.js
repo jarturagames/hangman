@@ -5,19 +5,23 @@ import getApiData from "../services/api";
 import { UserLetters } from "./UserLetters";
 
 const GameInteractive = ({
+  handleWord,
   correctLetters,
   handleChange,
   lastLetter,
   userLetters,
   numberOfErrors,
 }) => {
+
+  /*
   const handleButton = (ev) => {
     getApiData();
   };
+*/
 
   return (
     <main>
-      <button onClick={handleButton} className="start__button">
+      <button onClick={handleWord} className="start__button">
         START
       </button>
 

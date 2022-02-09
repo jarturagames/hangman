@@ -62,7 +62,32 @@ function App() {
     "bat",
     "human",
     "rat",
+    "horse",
+    "wolf",
   ];
+
+  //solucion
+  let word = "";
+
+  /*
+  crear funcion que seleccione de manera aleatoria uno de los
+  string de los animales y lo asigne la variable solucion
+  */
+
+  const handleWord = () => {
+    const maxNumber = animalsArray.length;
+    const minNumber = 1;
+
+    //generate randomNumber
+    let randomNumber = Math.floor(
+      Math.random() * (maxNumber - minNumber) + minNumber + 1
+    );
+
+    //pick randomNumber and link it to the index of animalsArray
+    word = animalsArray[randomNumber];
+    console.log(randomNumber, word);
+  };
+
   const solution = "jartura";
 
   // step 2 calcular max numero de errores y aciertos para enviarlos al dibujo
@@ -146,6 +171,7 @@ function App() {
       <Header />
       <GameIllustration numberOfErrors={numberOfErrors} />
       <GameInteractive
+        handleWord={handleWord}
         userLetters={userLetters}
         lastLetter={lastLetter}
         numberOfErrors={numberOfErrors}
