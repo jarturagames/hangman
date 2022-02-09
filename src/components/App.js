@@ -8,6 +8,7 @@ import GameIllustration from "./GameIllustration";
 import GameInteractive from "./GameInteractive";
 
 function App() {
+  const [word, setWord] = useState([]);
   const [lastLetter, setlastLetter] = useState(""); // la última letra introducida por el user
   const [userLetters, setUserLetters] = useState([]); // todas las letras introducidas por el user
 
@@ -66,8 +67,10 @@ function App() {
     "wolf",
   ];
 
-  //solucion
-  let word = "";
+  //array de letras separadas
+  let correctLetters = [];
+
+  let noRepetedLetters = []; //letras no repetidas, número máximo de aciertos
 
   /*
   crear funcion que seleccione de manera aleatoria uno de los
@@ -78,23 +81,29 @@ function App() {
     const maxNumber = animalsArray.length;
     const minNumber = 1;
 
+    let randomWord = "";
+    let randomWordLetters = [];
+
     let randomNumber = Math.floor(
       Math.random() * (maxNumber - minNumber) + minNumber + 1
     );
 
     //link random number to array and word
-    
-    word = animalsArray[randomNumber];
-    
-    return console.log(word);
-  }
+    randomWord = animalsArray[randomNumber];
+    //split word into strings
+    randomWordLetters = randomWord.split("");
+
+    //update word state
+    setWord(randomWordLetters);
+  };
+
+ 
 
   const handleStartBtn = () => {
-
     getRandomNumber();
   };
 
-  const solution = "jartura";
+  //const solution = "jartura";
 
   // step 2 calcular max numero de errores y aciertos para enviarlos al dibujo
   // (noRepetedLetters.length - numberOfErrors);
@@ -103,14 +112,11 @@ function App() {
   // detecta si hay letras repetidas
   // separa la solución en cadenas de letras
 
-  const correctLetters = solution.split("");
-  let noRepetedLetters = []; //letras no repetidas, número máximo de aciertos
-
   const correctLettersFiltered = () => {
-    for (let i = 0; i < correctLetters.length; i++) {
+    for (let i = 0; i < word.length; i++) {
       //si letrasRepetidas NO tiene la misma letra que correcLetters, añádelo al array noRepetedLetters
-      if (!noRepetedLetters.includes(correctLetters[i])) {
-        noRepetedLetters.push(correctLetters[i]);
+      if (!noRepetedLetters.includes(word[i])) {
+        noRepetedLetters.push(word[i]);
       }
     }
     return noRepetedLetters;
@@ -183,7 +189,7 @@ function App() {
         numberOfErrors={numberOfErrors}
         handleChange={handleChange}
         correctLetters={correctLetters}
-        solution={solution}
+        word={word}
       />
       <Footer />
     </>

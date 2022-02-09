@@ -7,6 +7,7 @@ import { UserLetters } from "./UserLetters";
 const GameInteractive = ({
   handleStartBtn,
   correctLetters,
+  word,
   handleChange,
   lastLetter,
   userLetters,
@@ -29,7 +30,7 @@ const GameInteractive = ({
         <div>imagen</div>
 
         <div>
-          <Word correctLetters={correctLetters} userLetters={userLetters}/>
+          <Word word={word} correctLetters={correctLetters} userLetters={userLetters}/>
           <p>Última letra: {lastLetter}</p>
           <UserLetters userLetters={userLetters}/>
           
