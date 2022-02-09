@@ -42,7 +42,7 @@ const GameInteractive = ({
             onChange={handleChange}
           ></input>
           <input
-            value={numberOfErrors}
+            value={`Errores: ${numberOfErrors}`}
             disabled="disabled"
             placeholder={numberOfErrors}
           ></input>

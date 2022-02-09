@@ -117,7 +117,7 @@ function App() {
   return (
     <>
       <Header />
-      <GameIllustration />
+      <GameIllustration numberOfErrors={numberOfErrors}/>
       <GameInteractive
         userLetters={userLetters}
         lastLetter={lastLetter}
