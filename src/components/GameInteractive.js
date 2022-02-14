@@ -5,7 +5,6 @@ import getApiData from "../services/api";
 import { UserLetters } from "./UserLetters";
 
 const GameInteractive = ({
-  handleStartBtn,
   correctLetters,
   word,
   handleChange,
@@ -13,27 +12,30 @@ const GameInteractive = ({
   userLetters,
   numberOfErrors,
 }) => {
-
   /*
   const handleButton = (ev) => {
     getApiData();
   };
+  style={{visibility:'hidden'}} 
+
+  si showForm es true, pon visibility show,
+  si showForm es false, pon visibility hidden
+
+  showForm ? style={{visibility:'hidden'}} : style={{visibility:'visible'}}  
 */
 
   return (
     <main>
-      <button onClick={handleStartBtn} className="start__button">
-        START
-      </button>
-
       <section className="section_solution">
         <div>imagen</div>
-
         <div>
-          <Word word={word} correctLetters={correctLetters} userLetters={userLetters}/>
+          <Word
+            word={word}
+            correctLetters={correctLetters}
+            userLetters={userLetters}
+          />
           <p>Última letra: {lastLetter}</p>
-          <UserLetters userLetters={userLetters}/>
-          
+          <UserLetters userLetters={userLetters} />
         </div>
       </section>
       <section className="section_form_game">

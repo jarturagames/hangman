@@ -9,6 +9,8 @@ import GameInteractive from "./GameInteractive";
 
 function App() {
   const [word, setWord] = useState([]);
+
+  const [showForm, setShowForm] = useState(false);
   const [lastLetter, setlastLetter] = useState(""); // la última letra introducida por el user
   const [userLetters, setUserLetters] = useState([]); // todas las letras introducidas por el user
 
@@ -89,8 +91,19 @@ function App() {
     setWord(randomWordLetters);
   };
 
+  const handleShowForm = () => {
+    if (showForm === false) {
+      setShowForm(true);
+      console.log(showForm);
+    } else {
+      setShowForm(false);
+      console.log(showForm);
+    }
+  };
+
   const handleStartBtn = () => {
     getRandomNumber();
+    handleShowForm();
   };
 
   //función para almacenar letras usadas por usuario + para validar que los caracteres son válidos
@@ -150,14 +163,25 @@ function App() {
     <>
       <Header />
       <GameIllustration numberOfErrors={numberOfErrors} />
-      <GameInteractive
-        handleStartBtn={handleStartBtn}
-        userLetters={userLetters}
-        lastLetter={lastLetter}
-        numberOfErrors={numberOfErrors}
-        handleChange={handleChange}
-        word={word}
-      />
+
+      {showForm ? (
+        <GameInteractive
+          handleStartBtn={handleStartBtn}
+          showForm={showForm}
+          userLetters={userLetters}
+          lastLetter={lastLetter}
+          numberOfErrors={numberOfErrors}
+          handleChange={handleChange}
+          word={word}
+        />
+      ) : (
+        <h3>
+          <button onClick={handleStartBtn} className="start__button">
+            START
+          </button>
+        </h3>
+      )}
+
       <Footer />
     </>
   );
