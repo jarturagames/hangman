@@ -162,9 +162,7 @@ function App() {
   return (
     <>
       <Header />
-      <GameIllustration numberOfErrors={numberOfErrors} />
-
-      {showForm ? (
+   {showForm ? (
         <GameInteractive
           handleStartBtn={handleStartBtn}
           showForm={showForm}
@@ -175,13 +173,14 @@ function App() {
           word={word}
         />
       ) : (
-        <h3>
+        <h3> Click start to play!
           <button onClick={handleStartBtn} className="start__button">
             START
           </button>
         </h3>
       )}
 
+      <GameIllustration numberOfErrors={numberOfErrors} />
       <Footer />
     </>
   );

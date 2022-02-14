@@ -1,7 +1,7 @@
 import React from "react";
 import Word from "./Word";
 
-import getApiData from "../services/api";
+//import getApiData from "../services/api";
 import { UserLetters } from "./UserLetters";
 
 const GameInteractive = ({
@@ -16,25 +16,20 @@ const GameInteractive = ({
   const handleButton = (ev) => {
     getApiData();
   };
-  style={{visibility:'hidden'}} 
 
-  si showForm es true, pon visibility show,
-  si showForm es false, pon visibility hidden
-
-  showForm ? style={{visibility:'hidden'}} : style={{visibility:'visible'}}  
 */
 
   return (
     <main>
       <section className="section_solution">
-        <div>imagen</div>
+        <div>Guess an animal</div>
         <div>
           <Word
             word={word}
             correctLetters={correctLetters}
             userLetters={userLetters}
           />
-          <p>Última letra: {lastLetter}</p>
+          <p>Last letter used: {lastLetter}</p>
           <UserLetters userLetters={userLetters} />
         </div>
       </section>
@@ -49,7 +44,7 @@ const GameInteractive = ({
             onChange={handleChange}
           ></input>
           <input
-            value={`Errores: ${numberOfErrors}`}
+            value={`Mistakes: ${numberOfErrors}`}
             disabled="disabled"
             placeholder={numberOfErrors}
           ></input>
