@@ -145,12 +145,13 @@ function App() {
       setUserLetters([...userLetters, inputValue]);
       window.alert("la letra " + inputValue + "  NO está en la solución");
 
-      if (wrongLetters.length >= 4) {
-        window.alert("has perdido");
+      if (wrongLetters.length > 4) {
+        window.alert(`has perdido`);
         setlastLetter("");
         setUserLetters([]);
         setWrongLetters([]);
         setNumberOfErrors(0);
+        getRandomNumber();
       }
     } else if (inputValue !== reg) {
       //caracter no válido
@@ -165,7 +166,6 @@ function App() {
    {showForm ? (
         <GameInteractive
           handleStartBtn={handleStartBtn}
-          showForm={showForm}
           userLetters={userLetters}
           lastLetter={lastLetter}
           numberOfErrors={numberOfErrors}
