@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import GameIllustration from "./GameIllustration";
 import GameInteractive from "./GameInteractive";
+import getApiData from "../services/api";
 
 function App() {
   const [word, setWord] = useState([]);
@@ -163,7 +164,7 @@ function App() {
   return (
     <>
       <Header />
-   {showForm ? (
+      {showForm ? (
         <GameInteractive
           handleStartBtn={handleStartBtn}
           userLetters={userLetters}
@@ -173,7 +174,9 @@ function App() {
           word={word}
         />
       ) : (
-        <h3> Click start to play!
+        <h3>
+          {" "}
+          Click start to play!
           <button onClick={handleStartBtn} className="start__button">
             START
           </button>
